@@ -24,6 +24,12 @@ if __name__ == '__main__':
 
     # Making sure no unkown arguments are given
     assert set(moargs).isdisjoint(toargs), f"{set(moargs) & set(toargs)}"
+    
+    # Save the command run
+    if not os.path.isdir('CMDs'):
+        os.mkdir('CMDs')
+    with open('CMDs/train.cmd', 'a') as f:
+        f.write(' '.join(sys.argv)+'\n')
 
     logger.info(model_args.__dict__)
     logger.info(train_args.__dict__)
